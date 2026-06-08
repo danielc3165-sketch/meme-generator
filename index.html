@@ -10,7 +10,15 @@
     </head>
     <body>
 
-    <h1>Meme Generator</h1>
+    <canvas class="canvas" width="500" height="500"></canvas>
+    
+    <div class="input-container">
+    <input class="text-input" type="text" oninput="onChangeText(this.value)" placeholder="Enter Text" />
+    <input class="color-input" type="color"/> 
+    </div>
+     
+    <a href="#" class="download-link" download="my-meme" onclick="downloadMeme(this)">Download Picture</a>
+
 
 
 <script src="main.js"></script>

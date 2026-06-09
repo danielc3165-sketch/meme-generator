@@ -8,10 +8,16 @@
 		<title>Meme</title>
 	
     </head>
-    <body>
+    <body onload="onInit()">
+    
+    <header>
+    <h1>Meme Generator</h1>
+    </header>
+
 
     <canvas class="canvas" width="500" height="500"></canvas>
     
+
     <div class="input-container">
     <input class="text-input" type="text" oninput="onChangeText(this.value)" placeholder="Enter Text" />
     <input class="color-input" type="color"/> 
@@ -20,9 +26,18 @@
     <a href="#" class="download-link" download="my-meme" onclick="downloadMeme(this)">Download Picture</a>
 
 
+    <section class="editor"></section>
 
-<script src="main.js"></script>
-<script src="service.js"></script>
+    <section class="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery-container"></div>
+    </section>
+
+
+
+
+<script src="meme-controler.js"></script>
+<script src="meme-service.js"></script>
 
     </body>  
 

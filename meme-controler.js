@@ -2,6 +2,7 @@
 
 function onInit() {
   renderMeme()
+  renderGallery()
 }
 
 function onChangeText(elValue) {

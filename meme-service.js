@@ -22,3 +22,5 @@ function getMeme(){}
     gMeme.lines[gMeme.selectedLineIdx].txt=txt
     gMeme.lines[gMeme.selectedLineIdx].color=color
  }
+
+ function setImg(){}

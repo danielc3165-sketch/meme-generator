@@ -1,5 +1,11 @@
 * { box-sizing: border-box; }
 
+header {
+    padding: 10px;
+    color: white;
+    background-color: #333;
+}
+
 .canvas {
     display: block;
     
@@ -22,8 +28,7 @@
     width: fit-content;
 }
 
-header {
-    padding: 10px;
-    color: white;
-    background-color: #333;
+.editor{
+    display: none;
 }
+

@@ -1,0 +1,19 @@
+*>{
+    box-sizing: border-box;
+} 
+
+
+@media (width<950px){
+   .editor{
+    grid-template-columns: 100vw;
+   }
+  .editor-text{
+    width: 500px;
+    height: fit-content;
+    padding-inline:50px ;
+    margin-top: 20px;
+    
+    border: 2px solid;
+   }
+
+}

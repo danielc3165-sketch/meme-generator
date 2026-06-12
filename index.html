@@ -5,41 +5,100 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="main.css" />
+        <link rel="stylesheet" href="responsivity.css" />
 		<title>Meme</title>
 	
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:
+    ital,wght@0,400..700;1,400..700&family=Kanit:ital,
+    wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:
+    ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+
+
+
+        
     </head>
     <body onload="onInit()">
     
     <header>
-    <h1>Meme Generator</h1>
-    </header>
-
-
-    <canvas class="canvas" width="500" height="500"></canvas>
-    
-
-    <div class="input-container">
-    <input class="text-input" type="text" oninput="onChangeText(this.value)" placeholder="Enter Text" />
-    <input class="color-input" type="color"/> 
+    <img src="LOGO.png" alt="">
+    <div class="header-btns">
+        <button onclick="onSwitchPage1(this)">Gllery Images</button>
+        <button onclick="onSwitchPage2(this)">Edit Image</button>
     </div>
-     
-    <a href="#" class="download-link" download="my-meme" onclick="downloadMeme(this)">Download Picture</a>
-
-
+    </header>
+    
     <section class="editor">
-        <h2>Editor</h2>
+    <div class="canvas-container">
+    <canvas class="canvas" width="500px" height="500px" onmousedown="onSwitchLine(event)"></canvas>
+    <div class="canvas-div">
+    <a href="#" class="download-link" download="my-meme" onclick="downloadMeme(this)">Download Picture</a>
+    <button onclick="onSave()">Save Image</button>
+    <button onclick="onLoad()">Restart</button>
+    </div>
+    </div>
+
+    <div class="editor-text">
+        
+    <h2>Editor</h2>
+    <input class="text-input" type="text" oninput="onChangeText(this.value)" placeholder="Enter Text" />
+    
+    
+    <div class="lines-buttons">
+    <button onclick="onSwitchLine(event)">
+    <img src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt="">
+    </button>  
+    <button onclick="onAddLine()"><img src="ICONS/add.png" alt=""></button>
+    <button onclick="onDeleatLine()"><img src="ICONS/trash.png" alt=""></button>
+    </div>
+
+    <div class="txt-editor">
+     
+    
+    <div class="font-size">
+       <button id="minus" class="font-size-buttons" onclick="onChangeSize('-')">-</button>
+       <span>F</span>
+       <button class="font-size-buttons" onclick="onChangeSize('+')">+</button>
+    </div>
+       
+    <button class="font-align" onclick="onChangePlace('left')">
+        <img src="ICONS/align-to-left.png" alt="">
+    </button>
+    <button class="font-align" onclick="onChangePlace('center')">
+        <img src="ICONS/center-text-alignment.png" alt="">
+    </button>
+    <button class="font-align" onclick="onChangePlace('right')">
+        <img src="ICONS/align-to-right.png" alt="">
+    </button>
+
+    <select onchange="onCangeFont(this.value)" name="Font Type" id="font-type">
+    <option value="Arimo">Arimo</option>
+    <option value="Lato">Lato</option>
+    <option value="Kanit">Kanit</option>
+    </select>
+    
+    <button onclick="onStroke()">S</button>
+    <input class="color-input" type="color" onchange="onChangeColor(this.value)"/> 
+    
+    </div>
+    
+    </div>
     </section>
 
     <section class="gallery">
+        <h2>Gallery</h2>  
     <div class="gallery-container"></div>
     </section>
 
+    <footer></footer>
 
+    <script src="util.js"></script>
+    <script src="galleryController.js"></script>
+    <script src="meme-service.js"></script>
+    <script src="meme-controler.js"></script>
 
-
-<script src="meme-controler.js"></script>
-<script src="meme-service.js"></script>
-<script src="galleryController.js"></script>
 
     </body>  
 

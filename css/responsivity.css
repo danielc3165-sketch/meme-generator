@@ -3,22 +3,36 @@
 } 
 
 
-@media (width<900px){
-   .editor{
-    grid-template-columns: 100vw;
-   }
 
+/* @media (width<950px){
+
+    .editor-text{
+        grid-template-columns: 80%;
+    }
+
+} */
+
+
+
+@media (width<950px){
+   .editor{
+    grid-template-columns: 1fr;
+    margin-inline: 50px;
+    padding-inline: 0;
+   }
+    
    .canvas-div{
     margin-bottom: 20px;
    }
 
   .editor-text{
+    grid-template-columns: 1fr;
     width: 500px;
     padding-top: 20px;
     padding-inline:50px ;
     border: 2px solid;
    }
    .icons{
-    width: fit-content;
+    width: 100%;
    }
 }

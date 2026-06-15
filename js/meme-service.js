@@ -53,7 +53,7 @@ function setLineColor(color){
 
  function addLine(){
     var line={
-    txt: 'Text', 
+    txt: `Text`, 
     size: 20, 
     color: '#000',
     pos:{x:0,y:0},

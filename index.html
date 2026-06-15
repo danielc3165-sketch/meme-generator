@@ -4,21 +4,17 @@
     
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="main.css" />
-        <link rel="stylesheet" href="responsivity.css" />
+		<link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/responsivity.css" />
 		<title>Meme</title>
 	
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Arimo:
-    ital,wght@0,400..700;1,400..700&family=Kanit:ital,
-    wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:
-    ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    ital,wght@0,400..700;1,400..700&family=Oswald:wght@200..700&
+    family=Playwrite+AU+VIC+Guides&display=swap" rel="stylesheet">
 
 
-
-
-        
     </head>
     <body onload="onInit()">
     
@@ -32,17 +28,11 @@
     
     <section class="editor">
     <div class="canvas-container">
-    <canvas class="canvas" width="500px" height="500px" onmousedown="onSwitchLine(event)"></canvas>
-    <div class="canvas-div">
-    <a href="#" class="download-link" download="my-meme" onclick="downloadMeme(this)">Download Picture</a>
-    <button onclick="onSave()">Save Image</button>
-    <button onclick="onLoad()">Restart</button>
-    </div>
-    </div>
+    <canvas class="canvas" width="500px" height="450px" onmousedown="onSwitchLine(event)"></canvas>
+     </div>
 
     <div class="editor-text">
         
-    <h2>Editor</h2>
     <input class="text-input" type="text" oninput="onChangeText(this.value)" placeholder="Enter Text" />
     
     
@@ -75,29 +65,58 @@
 
     <select onchange="onCangeFont(this.value)" name="Font Type" id="font-type">
     <option value="Arimo">Arimo</option>
-    <option value="Lato">Lato</option>
-    <option value="Kanit">Kanit</option>
+    <option value="Playwrite AU VIC Guides">Playwrite</option>
+    <option value="Oswald">Oswald</option>
     </select>
     
-    <button onclick="onStroke()">S</button>
+    <button class="font-align" onclick="onStroke()"><img src="ICONS/text stroke.png"></button>
     <input class="color-input" type="color" onchange="onChangeColor(this.value)"/> 
     
     </div>
     
+    <div class="icons">
+        <button onclick="onErrow('left')"><</button>
+        <div><img onclick="onIcon(this)" src="icons-png/smiley1.png" alt=""></div>
+        <div><img onclick="onIcon(this)" src="icons-png/smiley2.png" alt=""></div>
+        <div><img onclick="onIcon(this)" src="icons-png/smiley3.png" alt=""></div>
+        <div><img onclick="onIcon(this)" src="icons-png/smiley4.png" alt=""></div>
+        <button onclick="onErrow('right')">></button>
+    </div>
+     
+    <div class="canvas-div">
+    <a href="#" class="download-link" download="my-meme" onclick="downloadMeme(this)">Download</a>
+    <button class="bottom-btns" onclick="onSave()">Save Image</button>
+    <button class="bottom-btns" onclick="onLoad()">Restart</button>
+    </div>
+   
+
     </div>
     </section>
 
     <section class="gallery">
+        <div class="gallery2">
         <h2>Gallery</h2>  
+        <div>
+            <button>Humans</button>
+            <button>Babys</button>
+            <button>Animals</button>
+            <button>Others</button>
+        </div>
+        </div>
     <div class="gallery-container"></div>
     </section>
 
-    <footer></footer>
+    <footer>
+     <div>   
+     <img src="LOGO.png" alt="">
+     <p>All rights reserved 2026</p>
+     </div>
+    </footer>
 
-    <script src="util.js"></script>
-    <script src="galleryController.js"></script>
-    <script src="meme-service.js"></script>
-    <script src="meme-controler.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/galleryController.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/meme-controler.js"></script>
 
 
     </body>  

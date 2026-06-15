@@ -3,17 +3,22 @@
 } 
 
 
-@media (width<950px){
+@media (width<900px){
    .editor{
     grid-template-columns: 100vw;
    }
-  .editor-text{
-    width: 500px;
-    height: fit-content;
-    padding-inline:50px ;
-    margin-top: 20px;
-    
-    border: 2px solid;
+
+   .canvas-div{
+    margin-bottom: 20px;
    }
 
+  .editor-text{
+    width: 500px;
+    padding-top: 20px;
+    padding-inline:50px ;
+    border: 2px solid;
+   }
+   .icons{
+    width: fit-content;
+   }
 }

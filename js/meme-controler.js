@@ -1,12 +1,22 @@
 'use strict'
 
+
+var gIconsIdx=3
+var iconMode=false
+var gElIcon
+var gIconPos
+
 function onInit() {
   renderMeme()
   renderGallery()
   updateEditor()
+  bildIconsArr()
 }
 
 function renderMeme() {
+
+  if(iconMode===true) return
+
   const canvas = document.querySelector('.canvas')
   const ctx = canvas.getContext('2d')
   var lines=gMeme.lines
@@ -19,33 +29,36 @@ function renderMeme() {
   elImg.onload = function() {
     
     lines.forEach(({txt,size,color,place,stroke,font},idx)=>{
-      if(font==='Lato')ctx.font = `${size}px ${font} ,sans-serif`
-      else if(font==='Arimo')ctx.font = `${size}px ${font}`
-      else if(font==='Kanit')ctx.font = `${size}px ${font}`
+      if(font==='Oswald')ctx.font = `${font} ${size}px Arial`
+      else if(font==='Arimo')ctx.font = `${font} ${size}px Arial `
+      else if(font==='Playwrite AU VIC Guides')ctx.font = `${font} ${size} Arial`
       else ctx.font = `${size}px Arial`
       
       ctx.fillStyle = color
       ctx.strokeStyle= color
-      ctx.lineWidth=2
+      ctx.lineWidth=0.5
       
       if (stroke){ 
-      if (place === 'right') ctx.strokeText(txt,300,30+50*(idx))
-      else if (place === 'center') ctx.strokeText(txt,150,30+50*(idx))
+      if (place === 'right') ctx.strokeText(txt,490-ctx.measureText(txt).width,30+50*(idx))
+      else if (place === 'center') ctx.strokeText(txt,(500-ctx.measureText(txt).width)/2,30+50*(idx))
       else ctx.strokeText(txt,10,30+50*(idx))
 
       }else{
       if (place === 'right') ctx.fillText(txt,490-ctx.measureText(txt).width,30+50*(idx))
-      else if (place === 'center') ctx.fillText(txt,(500-ctx.measureText(txt)).width/2,30+50*(idx))
+      else if (place === 'center') ctx.fillText(txt,(500-ctx.measureText(txt).width)/2,30+50*(idx))
       else ctx.fillText(txt,10,30+50*(idx))
+      
       }
-     
     })
    
    var idx=gMeme.selectedLineIdx
    ctx.strokeStyle= 'black'
   //  var currLine=gMeme.lines[idx]
-   ctx.strokeRect(0,50*(idx), canvas.width, 50) 
-   }
+   ctx.strokeRect(0,50*(idx), canvas.width, 50)
+
+   
+}
+
 
 }
 
@@ -88,18 +101,34 @@ function onAddLine(){
 }
 
 function onSwitchLine(ev){
+  const canvas = document.querySelector('.canvas')
+  const ctx = canvas.getContext('2d')
+
   if(ev.type==='click'){
     switchLine()
     updateEditor()
     renderMeme()
   }else{
     var pos={x:ev.offsetX,y:ev.offsetY}
-    var idx=Math.floor(pos.y/50)
-    gMeme.selectedLineIdx=idx
     
-    updateEditor()
+    if(iconMode===true){
+        gIconPos=pos
+    if(iconMode===true) ctx.drawImage(gElIcon,gIconPos.x,gIconPos.y)
+      }
 
-    if(idx<gMeme.lines.length) renderMeme()
+
+    var idx=Math.floor(pos.y/50)
+    
+    
+    if(idx<gMeme.lines.length) {
+      gMeme.selectedLineIdx=idx
+    
+      updateEditor()
+      
+      
+
+      renderMeme()
+     }
     else return
     //console.log('ind',idx)
   }  
@@ -142,6 +171,7 @@ function onDeleatLine(){
 
 function onCangeFont(elVal){
     gMeme.lines[gMeme.selectedLineIdx].font=elVal
+    console.log(elVal)
 
     renderMeme()
     //console.log(gMeme.lines[gMeme.selectedLineIdx])
@@ -153,4 +183,53 @@ function updateEditor(){
     
     document.querySelector('.color-input').value=color
     document.querySelector('.text-input').value=txt
+}
+
+function bildIconsArr(idx=3){
+  var arr=[]
+  for(var i=0;i<12;i++){
+    var srcString=`icons-png/smiley${i}.png`
+    arr.push(srcString)
+  }
+  
+  var cutArr=arr.splice(idx,4)
+  var imgs=Array.from(document.querySelectorAll('.icons img'))
+  
+  
+  var i=0
+    imgs.forEach(img=>(img.src=cutArr[i++]))
+  
+  
+  //console.log(imgs)
+
+}
+
+function onErrow(side){
+  
+ if(side==='left'&&gIconsIdx>0) gIconsIdx--
+ else if(side==='right'&&gIconsIdx<6) gIconsIdx++
+ else return
+ console.log(gIconsIdx)
+ bildIconsArr(gIconsIdx)
+}
+
+function onIcon(el){
+    if(iconMode===false) {
+      
+      el.style.width='55px'
+      iconMode=true
+      gElIcon=el
+    }
+    else {
+      if(el.style.width==='55px'){
+        el.style.width='48px'
+        iconMode=false
+      }
+else{
+    var imgs=Array.from(document.querySelectorAll('.icons img'))
+    imgs.forEach(img=>(img.style.width='48px'))
+    el.style.width='55px'
+    gElIcon=el
+  }
+}
 }
